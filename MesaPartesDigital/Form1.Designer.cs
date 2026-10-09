@@ -51,6 +51,12 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAsunto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -85,12 +91,6 @@
             this.btnOdenar = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAsunto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpDatos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -274,6 +274,7 @@
             this.btnLimpiarCampos.TabIndex = 0;
             this.btnLimpiarCampos.Text = "Limpiar campos";
             this.btnLimpiarCampos.UseVisualStyleBackColor = false;
+            this.btnLimpiarCampos.Click += new System.EventHandler(this.btnLimpiarCampos_Click);
             // 
             // btnEliminar
             // 
@@ -307,6 +308,7 @@
             this.btnBuscar.TabIndex = 0;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnRegistrar
             // 
@@ -350,6 +352,48 @@
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(1016, 158);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // colCodigo
+            // 
+            this.colCodigo.HeaderText = "Código";
+            this.colCodigo.MinimumWidth = 8;
+            this.colCodigo.Name = "colCodigo";
+            this.colCodigo.Width = 150;
+            // 
+            // colDni
+            // 
+            this.colDni.HeaderText = "DNI";
+            this.colDni.MinimumWidth = 8;
+            this.colDni.Name = "colDni";
+            this.colDni.Width = 150;
+            // 
+            // colNombre
+            // 
+            this.colNombre.HeaderText = "Nombre";
+            this.colNombre.MinimumWidth = 8;
+            this.colNombre.Name = "colNombre";
+            this.colNombre.Width = 150;
+            // 
+            // colAsunto
+            // 
+            this.colAsunto.HeaderText = "Asunto";
+            this.colAsunto.MinimumWidth = 8;
+            this.colAsunto.Name = "colAsunto";
+            this.colAsunto.Width = 150;
+            // 
+            // colDescripcion
+            // 
+            this.colDescripcion.HeaderText = "Descripcíon";
+            this.colDescripcion.MinimumWidth = 8;
+            this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.Width = 150;
+            // 
+            // colFecha
+            // 
+            this.colFecha.HeaderText = "Fecha";
+            this.colFecha.MinimumWidth = 8;
+            this.colFecha.Name = "colFecha";
+            this.colFecha.Width = 150;
             // 
             // dataGridView2
             // 
@@ -620,6 +664,7 @@
             this.btnBusqueda.TabIndex = 1;
             this.btnBusqueda.Text = "Buscar";
             this.btnBusqueda.UseVisualStyleBackColor = true;
+            this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
             // 
             // lblBusqueda
             // 
@@ -673,48 +718,6 @@
             this.label13.Size = new System.Drawing.Size(130, 23);
             this.label13.TabIndex = 0;
             this.label13.Text = "Ordenar por: ";
-            // 
-            // colCodigo
-            // 
-            this.colCodigo.HeaderText = "Código";
-            this.colCodigo.MinimumWidth = 8;
-            this.colCodigo.Name = "colCodigo";
-            this.colCodigo.Width = 150;
-            // 
-            // colDni
-            // 
-            this.colDni.HeaderText = "DNI";
-            this.colDni.MinimumWidth = 8;
-            this.colDni.Name = "colDni";
-            this.colDni.Width = 150;
-            // 
-            // colNombre
-            // 
-            this.colNombre.HeaderText = "Nombre";
-            this.colNombre.MinimumWidth = 8;
-            this.colNombre.Name = "colNombre";
-            this.colNombre.Width = 150;
-            // 
-            // colAsunto
-            // 
-            this.colAsunto.HeaderText = "Asunto";
-            this.colAsunto.MinimumWidth = 8;
-            this.colAsunto.Name = "colAsunto";
-            this.colAsunto.Width = 150;
-            // 
-            // colDescripcion
-            // 
-            this.colDescripcion.HeaderText = "Descripcíon";
-            this.colDescripcion.MinimumWidth = 8;
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.Width = 150;
-            // 
-            // colFecha
-            // 
-            this.colFecha.HeaderText = "Fecha";
-            this.colFecha.MinimumWidth = 8;
-            this.colFecha.Name = "colFecha";
-            this.colFecha.Width = 150;
             // 
             // Form1
             // 
