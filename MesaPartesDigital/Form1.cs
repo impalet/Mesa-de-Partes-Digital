@@ -8,7 +8,7 @@ namespace MesaPartesDigital
     {
         //creando listas
         private List<Expediente> expedientes = new List<Expediente>();
-
+        private Expediente expedienteSeleccionado = null;
         public Form1()
         {
             InitializeComponent();
@@ -100,6 +100,7 @@ namespace MesaPartesDigital
             {
                 if (item.Codigo == codigoBuscado)
                 {
+                    expedienteSeleccionado = item;
                     txtDni.Text = item.Dni;
                     txtNombre.Text=item.Nombre;
                     cboAsunto.Text = item.Asunto;
@@ -128,6 +129,74 @@ namespace MesaPartesDigital
 
             MessageBox.Show("No se encontro el expediente. ");
 
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (expedienteSeleccionado == null)
+            {
+                MessageBox.Show("Primero busque un expediente.");
+                return;
+            }
+
+            if (txtDni.Text == "" || txtNombre.Text == "")
+            {
+                MessageBox.Show("Complete el DNI y el nombre.");
+                return;
+            }
+
+            if (txtDni.Text.Length != 8)
+            {
+                MessageBox.Show("El DNI debe tener 8 dígitos.");
+                return;
+            }
+
+            if (!long.TryParse(txtDni.Text, out _))
+            {
+                MessageBox.Show("El DNI debe contener solo números.");
+                return;
+            }
+
+            expedienteSeleccionado.Dni = txtDni.Text;
+            expedienteSeleccionado.Nombre = txtNombre.Text;
+            expedienteSeleccionado.Asunto = cboAsunto.Text;
+            expedienteSeleccionado.Descripcion = txtDescripcion.Text;
+            expedienteSeleccionado.Fecha = txtFecha.Text;
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = expedientes;
+
+            MessageBox.Show("Expediente actualizado correctamente.");
+
+            expedienteSeleccionado = null;
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (expedienteSeleccionado == null)
+            {
+                MessageBox.Show("Primero busque un expediente.");
+                return;
+            }
+
+            DialogResult respuesta = MessageBox.Show(
+                "¿Está seguro de eliminar este expediente?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (respuesta == DialogResult.Yes)
+            {
+                expedientes.Remove(expedienteSeleccionado);
+
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = expedientes;
+
+                expedienteSeleccionado = null;
+
+                MessageBox.Show("Expediente eliminado correctamente.");
+            }
         }
     }
 }
