@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.IO;
+using System.Text;
 
 namespace MesaPartesDigital
 {
@@ -8,10 +10,21 @@ namespace MesaPartesDigital
     {
         //creando listas
         private List<Expediente> expedientes = new List<Expediente>();
+        //ruta donde se guardara los archivos
+        private string rutaArchivo = Path.Combine(Application.StartupPath, "expedientes.txt");
         private Expediente expedienteSeleccionado = null;
         public Form1()
         {
             InitializeComponent();
+            cboAsunto.Items.Clear();
+            lblFechaa.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+
+            cboAsunto.Items.Add("Solicitud");
+            cboAsunto.Items.Add("Reclamo");
+            cboAsunto.Items.Add("Consulta");
+            cboAsunto.Items.Add("Denuncia");
+            cboAsunto.Items.Add("Otros");
+
             dataGridView1.AutoGenerateColumns = false;
 
             colCodigo.DataPropertyName = "Codigo";
@@ -20,6 +33,7 @@ namespace MesaPartesDigital
             colAsunto.DataPropertyName = "Asunto";
             colDescripcion.DataPropertyName = "Descripcion";
             colFecha.DataPropertyName = "Fecha";
+            CargarExpedientes();
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -50,7 +64,7 @@ namespace MesaPartesDigital
             string nombre = txtNombre.Text;
             string asunto = cboAsunto.Text;
             string descripcion= txtDescripcion.Text;
-            string fecha = txtFecha.Text;
+            
             //recorre cada expediente en busqueda de codigo ya existente
             foreach (Expediente item in expedientes) 
             {
@@ -60,8 +74,10 @@ namespace MesaPartesDigital
                     return;
                 }
             }
+            string fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            lblFechaa.Text = fecha;
 
-         
+
             Expediente expediente=new Expediente();
          
             
@@ -73,6 +89,7 @@ namespace MesaPartesDigital
             expediente.Fecha = fecha;
 
             expedientes.Add(expediente);
+            GuardarExpedientes();
 
             //mostrar en tabla
             dataGridView1.DataSource = null;
@@ -89,7 +106,9 @@ namespace MesaPartesDigital
             txtNombre.Clear();
             cboAsunto.SelectedIndex = -1;
             txtDescripcion.Clear();
-            txtFecha.Clear();
+            lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            expedienteSeleccionado=null;
+            
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -104,7 +123,8 @@ namespace MesaPartesDigital
                     txtDni.Text = item.Dni;
                     txtNombre.Text=item.Nombre;
                     cboAsunto.Text = item.Asunto;
-                    txtFecha.Text = item.Fecha;
+                    txtDescripcion.Text=item.Descripcion;
+                    lblFechaa.Text = item.Fecha;
 
                     MessageBox.Show("Expediente cargando correctamente. ");
                     return;
@@ -161,7 +181,9 @@ namespace MesaPartesDigital
             expedienteSeleccionado.Nombre = txtNombre.Text;
             expedienteSeleccionado.Asunto = cboAsunto.Text;
             expedienteSeleccionado.Descripcion = txtDescripcion.Text;
-            expedienteSeleccionado.Fecha = txtFecha.Text;
+            
+
+            GuardarExpedientes();
 
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = expedientes;
@@ -189,6 +211,7 @@ namespace MesaPartesDigital
             if (respuesta == DialogResult.Yes)
             {
                 expedientes.Remove(expedienteSeleccionado);
+                GuardarExpedientes();
 
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = expedientes;
@@ -198,5 +221,61 @@ namespace MesaPartesDigital
                 MessageBox.Show("Expediente eliminado correctamente.");
             }
         }
+
+        private void GuardarExpedientes()
+        {
+            using (StreamWriter escritor = new StreamWriter(rutaArchivo, false, Encoding.UTF8))
+            {
+                foreach (Expediente item in expedientes)
+                {
+                    string linea = item.Codigo + "|" +
+                                   item.Dni + "|" +
+                                   item.Nombre + "|" +
+                                   item.Asunto + "|" +
+                                   item.Descripcion + "|" +
+                                   item.Fecha;
+
+                    escritor.WriteLine(linea);
+                }
+            }
+        }
+
+        private void CargarExpedientes()
+        {
+            expedientes.Clear();
+
+            if (File.Exists(rutaArchivo))
+            {
+                using (StreamReader lector = new StreamReader(rutaArchivo, Encoding.UTF8))
+                {
+                    string linea;
+
+                    while ((linea = lector.ReadLine()) != null)
+                    {
+                        string[] datos = linea.Split('|');
+
+                        if (datos.Length == 6)
+                        {
+                            Expediente expediente = new Expediente();
+
+                            expediente.Codigo = datos[0];
+                            expediente.Dni = datos[1];
+                            expediente.Nombre = datos[2];
+                            expediente.Asunto = datos[3];
+                            expediente.Descripcion = datos[4];
+                            expediente.Fecha = datos[5];
+
+                            expedientes.Add(expediente);
+                        }
+                    }
+                }
+            }
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = expedientes;
+        }
+
+
     }
+
 }

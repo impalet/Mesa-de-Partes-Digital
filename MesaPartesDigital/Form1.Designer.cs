@@ -42,7 +42,6 @@
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
-            this.txtFecha = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnLimpiarCampos = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -91,6 +90,7 @@
             this.btnOdenar = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.lblFechaa = new System.Windows.Forms.Label();
             this.grpDatos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -235,18 +235,12 @@
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(831, 43);
+            this.lblFecha.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFecha.Location = new System.Drawing.Point(821, 43);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(58, 20);
+            this.lblFecha.Size = new System.Drawing.Size(62, 19);
             this.lblFecha.TabIndex = 3;
             this.lblFecha.Text = "Fecha:";
-            // 
-            // txtFecha
-            // 
-            this.txtFecha.Location = new System.Drawing.Point(885, 37);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(100, 26);
-            this.txtFecha.TabIndex = 4;
             // 
             // groupBox1
             // 
@@ -332,7 +326,7 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox2.Location = new System.Drawing.Point(28, 411);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1052, 222);
+            this.groupBox2.Size = new System.Drawing.Size(1052, 278);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "3. Lista de expedientes";
@@ -352,7 +346,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1016, 158);
+            this.dataGridView1.Size = new System.Drawing.Size(1016, 217);
             this.dataGridView1.TabIndex = 0;
             // 
             // colCodigo
@@ -643,7 +637,7 @@
             this.grpBusqueda.Controls.Add(this.btnBusqueda);
             this.grpBusqueda.Controls.Add(this.lblBusqueda);
             this.grpBusqueda.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpBusqueda.Location = new System.Drawing.Point(28, 658);
+            this.grpBusqueda.Location = new System.Drawing.Point(28, 710);
             this.grpBusqueda.Name = "grpBusqueda";
             this.grpBusqueda.Size = new System.Drawing.Size(526, 89);
             this.grpBusqueda.TabIndex = 6;
@@ -685,7 +679,7 @@
             this.groupBox7.Controls.Add(this.btnOdenar);
             this.groupBox7.Controls.Add(this.label13);
             this.groupBox7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(579, 658);
+            this.groupBox7.Location = new System.Drawing.Point(579, 710);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(501, 89);
             this.groupBox7.TabIndex = 6;
@@ -721,22 +715,33 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Ordenar por: ";
             // 
+            // lblFechaa
+            // 
+            this.lblFechaa.AutoSize = true;
+            this.lblFechaa.Location = new System.Drawing.Point(886, 43);
+            this.lblFechaa.Name = "lblFechaa";
+            this.lblFechaa.Size = new System.Drawing.Size(60, 20);
+            this.lblFechaa.TabIndex = 7;
+            this.lblFechaa.Text = "label14";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCyan;
-            this.ClientSize = new System.Drawing.Size(1119, 769);
+            this.ClientSize = new System.Drawing.Size(1178, 868);
+            this.Controls.Add(this.lblFechaa);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.grpBusqueda);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.txtFecha);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grpDatos);
             this.Controls.Add(this.lblSubtitulo);
             this.Controls.Add(this.lblTitulo);
+            this.MinimumSize = new System.Drawing.Size(1100, 760);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mesa de Partes Digital - UPN";
             this.grpDatos.ResumeLayout(false);
             this.grpDatos.PerformLayout();
@@ -774,7 +779,6 @@
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnLimpiarCampos;
@@ -823,6 +827,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAsunto;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
+        private System.Windows.Forms.Label lblFechaa;
     }
 }
 
