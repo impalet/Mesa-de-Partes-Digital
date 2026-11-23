@@ -275,7 +275,44 @@ namespace MesaPartesDigital
             dataGridView1.DataSource = expedientes;
         }
 
+        private void btnOdenar_Click(object sender, EventArgs e)
+        {
+            if (cboLista.SelectedIndex == -1)
+            {
+                MessageBox.Show("Elija un criterio para ordenar.");
+                return;
+            }
 
+            if (cboLista.Text == "Código")
+            {
+                expedientes.Sort((a, b) => string.Compare(a.Codigo, b.Codigo));
+            }
+            else if (cboLista.Text == "DNI")
+            {
+                expedientes.Sort((a, b) => string.Compare(a.Dni, b.Dni));
+            }
+            else if (cboLista.Text == "Nombre")
+            {
+                expedientes.Sort((a, b) => string.Compare(a.Nombre, b.Nombre));
+            }
+            else if (cboLista.Text == "Asunto")
+            {
+                expedientes.Sort((a, b) => string.Compare(a.Asunto, b.Asunto));
+            }
+            else
+            {
+                MessageBox.Show("Criterio no reconocido.");
+                return;
+            }
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = expedientes;
+        }
+
+        private void cboLista_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
